@@ -1,0 +1,135 @@
+/* 
+* @Author: gaohuabin
+* @Date:   2016-02-06 17:33:33
+* @Last Modified by:   gaohuabin
+* @Last Modified time: 2016-02-09 15:11:46
+*/
+@charset "UTF-8";
+a,a:active {
+    outline: 0;
+}
+html{
+    font-size:62.5%;
+}
+body{
+    background-color: #fff;
+    font-family:Helvetica,"microsoft yahei";
+    font-size:1.6rem;
+}
+body {
+    position: relative;
+    overflow-x: hidden;
+    /* overflow-y:scroll; */
+    -webkit-overflow-scrolling: touch;
+}
+abbr,article,aside,blockquote,body,button,command,dd,details,div,dl,dt,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,input,li,mark,meter,nav,ol,output,p,pre,progress,section,summary,time,ul {
+    margin: 0;
+    padding: 0;
+}
+address,caption,cite,code,em,figcaption,h1,h2,h3,h4,h5,h6,pre,strong,th {
+    font-weight: 400;
+    font-style: normal;
+}
+dd,dl,dt,li,ul {
+    list-style: none;
+}
+fieldset,iframe,img {
+    border: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+article,aside,figcaption,figure,footer,header,hgroup,nav,section,video {
+    display: block;
+}
+/*去掉输入框阴影*/
+input[type=text] {
+    background-position-y: -1px;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+input,select {
+    outline: 0;
+    border: 0;
+}
+/* input[type=text] {
+    background-position-y: -1px;
+} */
+address,cite,em,i,var {
+    font-style: normal;
+}
+* {
+    -webkit-tap-highlight-color: rgba(255,0,0,0);
+}
+b,strong {
+    font-weight: 700;
+}
+.clearfix:after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0;
+}
+.clearfix {
+    zoom:1;
+}
+.relative{position:relative;}
+img {
+    max-width:100%;
+    border: 0 none;vertical-align: middle;
+}
+/*移动端*/
+@media screen and (max-device-width: 320px) {
+    body {
+        -webkit-text-size-adjust:none; 
+    }
+}
+@media screen and (max-device-width: 480px) {
+    body {
+        -webkit-text-size-adjust:none; 
+    }
+}
+@media only screen and (-webkit-min-device-pixel-ratio:2) {
+    body {
+        -webkit-text-size-adjust: none; 
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width:1024px) {
+    body {
+        -webkit-text-size-adjust:none; 
+    }
+}
+/*文字超出隐藏*/
+.text-nowrap{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/*购彩大厅*/
+#header{font-size: 2.1rem;background:#209AD4 ;color:#fff;}
+.all-lotteries{max-width: 64rem;margin: 0 auto;background:#fff;}
+.all-lotteries li{position:relative;padding:1rem;}
+.all-lotteries li:before{position:absolute;top:-1px;left:0;content:'';width:100%;height:1px;border-bottom:1px solid #ddd;-webkit-transform: scaleY(0.5);}
+.all-lotteries a{display:-webkit-flex;}
+.all-lotteries span{position:absolute;top:0;right:0;font-size: 1.2rem;}
+.all-lotteries .img-box{width:6rem;height:6rem;margin-right:1rem;}
+.all-lotteries img{width: 100%;height: 100%;}
+.all-lotteries .desc{-webkit-flex:1;width:0;height:6rem;}
+.all-lotteries h2{font-size: 2.1rem;color:#333;font-weight: normal;width:100%;margin-bottom:1rem;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.all-lotteries p{font-size: 1.6rem;color:#aaa;font-weight: normal;word-break: break-all;display:-webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
+
+/*媒体查询，大于480px小于640px*/
+/* @media (min-width: 480px) and (max-width: 640px) {
+    
+}
+
+媒体查询，小于480px
+@media (max-width: 480px) {
+.all-lotteries img{width:10%;min-width:6rem;}
+.all-lotteries .desc{width:80%;float: right;border-bottom:.1rem solid #ddd;min-height:8rem;}
+} */
