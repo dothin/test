@@ -2,7 +2,7 @@
 * @Author: gaohuabin
 * @Date:   2016-02-06 17:33:33
 * @Last Modified by:   gaohuabin
-* @Last Modified time: 2016-02-09 15:11:46
+* @Last Modified time: 2016-02-09 15:56:09
 */
 @charset "UTF-8";
 a,a:active {
@@ -115,13 +115,14 @@ img {
 .all-lotteries{max-width: 64rem;margin: 0 auto;background:#fff;}
 .all-lotteries li{position:relative;padding:1rem;}
 .all-lotteries li:before{position:absolute;top:-1px;left:0;content:'';width:100%;height:1px;border-bottom:1px solid #ddd;-webkit-transform: scaleY(0.5);}
-.all-lotteries a{display:-webkit-flex;}
-.all-lotteries span{position:absolute;top:0;right:0;font-size: 1.2rem;}
+.all-lotteries a{display:-webkit-box;box-pack:center;box-align:center;}
+.all-lotteries span{position:absolute;top:.2rem;right:0;font-size: 1.2rem;}
 .all-lotteries .img-box{width:6rem;height:6rem;margin-right:1rem;}
 .all-lotteries img{width: 100%;height: 100%;}
-.all-lotteries .desc{-webkit-flex:1;width:0;height:6rem;}
-.all-lotteries h2{font-size: 2.1rem;color:#333;font-weight: normal;width:100%;margin-bottom:1rem;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
-.all-lotteries p{font-size: 1.6rem;color:#aaa;font-weight: normal;word-break: break-all;display:-webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
+.all-lotteries .desc{-webkit-box-flex:1;height:6rem;position:relative;}
+.all-lotteries .content-box{position:absolute;top:50%;left:0;transform:translate(0,-50%);}
+.all-lotteries h2{font-size: 2.1rem;color:#333;font-weight: normal;width:100%;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;margin-bottom:.6rem;}
+.all-lotteries p{font-size: 1.6rem;color:#aaa;width:100%;font-weight: normal;word-break: break-all;display:-webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
 
 /*媒体查询，大于480px小于640px*/
 /* @media (min-width: 480px) and (max-width: 640px) {
