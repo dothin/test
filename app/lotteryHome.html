@@ -10,7 +10,7 @@
        <!--  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css"> -->
         <link rel="stylesheet" type="text/css" href="css/common.css">
     </head>
-    <body>
+    <body class="home">
         <header class="home-header">
             <h1 class="text-nowrap">购彩大厅</h1>
         </header>
@@ -178,11 +178,12 @@
                 </li>
             </ul>
         </section>
+
         <footer class="home-footer">
             <nav >
                 <ul>
                     <li><a class="text-nowrap" href="#"  title="">精彩推荐</a></li>
-                    <li><a class="text-nowrap" href="#"  title="">购彩大厅</a></li>
+                    <li><a class="text-nowrap active" href="#"  title="">购彩大厅</a></li>
                     <li><a class="text-nowrap" href="#"  title="">开奖走势</a></li>
                     <li><a class="text-nowrap" href="#"  title="">我的凤凰</a></li>
                 </ul>
@@ -196,5 +197,37 @@
         </script>
         <script src="js/jquery.mobile-1.4.5.js"></script> -->
         <script src="js/zepto.min.js"></script>
+        <script>
+              $(function(){
+                $('.home-footer').on('swipeLeft','a',function(){
+                    console.log($(this).text());
+                    loader.init();
+                })
+                /*$(window).on('resize',function(){
+                    console.log(screen.width+':'+screen.height);
+                })*/
+              })
+              var loader={
+                tag:true,
+                init:function(){
+                    if (this.tag) {
+                        var width=screen.availWidth;
+                        var height=screen.availHeight;
+                        console.log(height)
+                        $(this.defaultHtml).appendTo($('body'));
+                        $('.ui-icon-loading').css({
+                            'top':height/2
+                        });
+                        this.tag=false;
+                    };
+                    
+                },
+                defaultHtml: "<div class='ui-loader'>" +
+                    "<span class='ui-icon-loading'></span>" +
+                    "</div>"
+              };
+              
+        </script>
+        
     </body>
 </html>
