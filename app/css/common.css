@@ -2,7 +2,7 @@
 * @Author: gaohuabin
 * @Date:   2016-02-06 17:33:33
 * @Last Modified by:   gaohuabin
-* @Last Modified time: 2016-02-09 23:42:58
+* @Last Modified time: 2016-02-10 22:48:46
 */
 @charset "UTF-8";
 a,a:active {
@@ -78,6 +78,7 @@ b,strong {
     zoom:1;
 }
 .relative{position:relative;}
+.hide{display:none;}
 img {
     max-width:100%;
     border: 0 none;vertical-align: middle;
@@ -103,6 +104,14 @@ img {
         -webkit-text-size-adjust:none; 
     }
 }
+.header-fixed,.footer-fixed{
+    position:fixed;left:0;z-index: 9999;
+}
+.header-fixed{top:0;}
+/*隐藏滚动条*/
+.hide-scrollbar::-webkit-scrollbar{width:0;height:0;-webkit-overflow-scrolling: touch;
+    -webkit-transform: translateZ(0);}
+.footer-fixed{bottom:0;}
 /*文字超出隐藏*/
 .text-nowrap{
     white-space: nowrap;
@@ -132,11 +141,11 @@ img {
     background-color: #000;
     display: block;
     margin: 0;
-    width: 2.4rem;
-    height: 2.4rem;
-    padding: .625rem;
-    -webkit-border-radius: 2rem;
-    border-radius: 2rem;
+    width: 23px;
+    height: 23px;
+    padding: 12px;
+    -webkit-border-radius: 40px;
+    border-radius: 40px;
 }
 .ui-loader-verbose .ui-icon-loading {
     margin: 0 auto .625em;
@@ -152,14 +161,14 @@ img {
 }
 /*购彩大厅*/
 .home{padding:5rem 0;}
-.home-header,.home-footer{height:5rem;width:100%;line-height:5rem;text-align: center;position:fixed;left:0;z-index: 9999;}
-.home-header{background:#209AD4 ;top:0;}
+.home-header,.home-footer{height:5rem;width:100%;line-height:5rem;text-align: center;}
+.home-header{background:#209AD4 ;}
 .home-header .text-nowrap{font-size: 2.1rem;color:#fff;text-shadow: 0 1px 0 #eee ;}
 
 .all-lotteries{max-width: 64rem;margin: 0 auto;background:#fff;}
 .all-lotteries li{position:relative;padding:1rem;}
 .all-lotteries li:before{position:absolute;top:-1px;left:0;content:'';width:100%;height:1px;border-bottom:1px solid #ddd;-webkit-transform: scaleY(0.5);}
-.all-lotteries a{display:-webkit-box;}
+.all-lotteries a{display:-webkit-box;display:box;}
 .all-lotteries span{position:absolute;top:.2rem;right:0;font-size: 1.2rem;}
 .all-lotteries .img-box{width:6rem;height:6rem;margin-right:1rem;}
 .all-lotteries img{width: 100%;height: 100%;}
@@ -167,20 +176,57 @@ img {
 .all-lotteries .content-box{position:absolute;top:50%;left:0;-webkit-transform: translate(0,-50%);
     transform: translate(0,-50%);}
 .all-lotteries h2{font-size: 2.1rem;color:#333;font-weight: normal;width:100%;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;margin-bottom:.6rem;}
-.all-lotteries p{font-size: 1.6rem;color:#aaa;width:100%;font-weight: normal;word-break: break-all;display:-webkit-box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
-.home-footer{bottom:0;background:#333;}
-.home-footer ul{display:-webkit-box;}
+.all-lotteries p{font-size: 1.6rem;color:#aaa;width:100%;font-weight: normal;word-break: break-all;display:-webkit-box;display:box;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
+.home-footer{background:#333;}
+.home-footer ul{display:-webkit-box;display:box;}
 .home-footer li{-webkit-box-flex:1;}
-.home-footer .text-nowrap{color:#ddd;display:block;border-right:1px solid #000;}
+.home-footer .text-nowrap{color:#ddd;display:block;border-right:1px solid #000;font-size: 1.4rem;}
 .home-footer .active{background:#222;color:#fff;}
 .home-footer li:nth-child(4) .text-nowrap{border-right:0;}
-/*媒体查询，大于480px小于640px*/
-/* @media (min-width: 480px) and (max-width: 640px) {
-    
-}
 
-媒体查询，小于480px
-@media (max-width: 480px) {
-.all-lotteries img{width:10%;min-width:6rem;}
-.all-lotteries .desc{width:80%;float: right;border-bottom:.1rem solid #ddd;min-height:8rem;}
-} */
+/*顺利秒秒彩*/
+.shunli{padding:4rem 0;}
+.shunli-header{background:#D84949;height:4rem;line-height: 4rem;display:-webkit-box;display:box;width:100%;}
+.shunli-header a{width:4rem;color:#fff;font-size: 1.8rem;display:block;text-align: center;}
+.shunli-header .choose-mode{-webkit-box-flex:1;}
+.shunli-header .active{background:#C32424;}
+.hide-scrollbar::-webkit-scrollbar{width:0;height:0;}
+.mode-content{position:fixed;left:0;top:4rem;width:100%;background:#f7f7f7;border-bottom:1px solid #D84949;height:0;overflow: scroll;}
+.mode-top{height:5rem;overflow: hidden;overflow-x: auto;white-space: nowrap;margin-bottom:1.5rem;border-bottom:1px solid #ddd;padding-left:1rem;}
+.mode-top li{display: inline-block;box-sizing:border-box;height:3rem;line-height:3rem;padding:0 1rem;border-radius:.4rem;margin-top:1rem;margin-right: 1rem;white-space: normal;background-color: #FDFDFF;}
+.mode-top .active{border:1px solid #841818;}
+.mode-top a{display: block;font-size:1.5rem;color: #841818;}
+.items{margin-bottom:1.5rem;padding-left:1rem;line-height: 2.5rem;overflow: hidden;}
+.items span{width:7rem;font-size:1.5rem;color:#CE1A1A;float: left;}
+.items ul{margin-left:7rem;}
+.items li{display:inline-block;margin-right:2rem;}
+.items a{display:block;font-size:1.5rem;}
+
+.shunli-content{padding-bottom:2rem;}
+.content-top{height:3rem;line-height: 3rem;background:#0C173A;display:-webkit-box;display:box;padding:0 2rem;}
+.content-top a{display:block;color:#fff;font-size: 1.4rem;-webkit-box-flex:1;text-align: right;}
+.content-top a:first-child{text-align:left;}
+
+.number{}
+.number-box{padding-left:1rem;display:none;}
+.box-header{height:4rem;line-height: 4rem;display:-webkit-box;display:box;border-bottom: 1px solid #ddd;}
+
+.box-header span{display:block;width:6rem;}
+.box-header ul{-webkit-box-flex:1;text-align: right;}
+.box-header li{display:inline-block;}
+.box-header a{display:block;padding:0 1rem;}
+.box-content{}
+.box-content li{display:inline-block;height:3.5rem;width:3.5rem;line-height:3.5rem;text-align:center;margin:.5rem;}
+.box-content a{display:block;background:#eee;border-radius: 3rem;border:1px dashed #ddd;}
+
+.shunli-footer{background:#333;width:100%;}
+.shunli-footer ul{display:-webkit-box;display:box;}
+
+.multiple{-webkit-box-flex:1;}
+.shunli-footer li:last-child{-webkit-box-flex:2;}
+.footer-pirce{-webkit-box-flex:7;}
+.footer-pirce a{position:relative;}
+.footer-pirce p{position:absolute;top:-.6rem;left:1rem;}
+.footer-pirce .total{position:absolute;top:1.3rem;left:1rem;color:#EF3232;}
+.footer-pirce i{position:absolute;top:0;left:12rem;}
+.shunli-footer a{display:block;color:#fff;height:5rem;line-height: 5rem;padding-left:.5rem;}
