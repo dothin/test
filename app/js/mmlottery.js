@@ -2,7 +2,7 @@
  * @Author: gaohuabin
  * @Date:   2016-02-10 14:52:37
  * @Last Modified by:   gaohuabin
- * @Last Modified time: 2016-02-10 23:00:56
+ * @Last Modified time: 2016-02-11 02:00:22
  */
 $(function() {
     /*loader.init();
@@ -68,10 +68,9 @@ $(function() {
             console.log(arrItems)
             arrText = arrItems;
             var len = arrItems.length;
-
             for (var i = 0; i < len; i++) {
-                var arr=arrItems[i].split('.');
-                $('.mode-top ul').append('<li><a href="javascript:;" data-id="'+arr[1]+'" title="">' + arr[0] + '</a></li>');
+                var arr = arrItems[i].split('.');
+                $('.mode-top ul').append('<li><a href="javascript:;" data-id="' + arr[1] + '" title="">' + arr[0] + '</a></li>');
             };
             $('.mode-top ul').get(0).children[0].className = 'active';
             $('.choose-mode').text($('.mode-top ul li').get(0).children[0].innerHTML);
@@ -100,11 +99,12 @@ $(function() {
     })
     //$('.mode-top ul').
     $('.mode-content .items').on('tap', 'a', function() {
+        $('.box-content a').removeClass('active');
         var arr = $(this).parents('.items').find('span').text().split('');
         var stars = arr[0] + arr[1];
         var index = $(this).get(0).dataset.id;
         var text = stars + $(this).text();
-        var sText = stars + $(this).text()+'.'+index;
+        var sText = stars + $(this).text() + '.' + index;
         if ($.inArray(sText, arrText) == -1) {
             arrText.push(sText);
             $('.mode-top ul li').each(function(index, el) {
@@ -132,6 +132,69 @@ $(function() {
         console.log(index)
         action(index, $(this));
     })
+    $('.box-content').on('tap', 'a', function() {
+        $(this).parents('.number-box').find('.box-header a').removeClass('active');
+        $('.multiple').addClass('active');
+        $('.footer-pirce').addClass('active');
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+        } else {
+            $(this).addClass('active');
+        }
+    })
+    $('.box-header').on('tap', 'a', function() {
+        var contenta=$(this).parents('.number-box').find('.box-content a');
+        var len=contenta.length;
+        var headera=$(this).parents('.number-box').find('.box-header a');
+        headera.removeClass('active');
+        switch ($(this).get(0).className) {
+            case "big":
+                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
+                contenta.each(function(i,ele){
+                    if (i>=len/2) {
+                        $(this).addClass('active');
+                    };
+                })
+                break;
+            case "small":
+                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
+                contenta.each(function(i,ele){
+                    if (i<len/2) {
+                        $(this).addClass('active');
+                    };
+                })
+                break;
+            case "all":
+                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
+                contenta.each(function(i,ele){
+                        $(this).addClass('active');
+                })
+                break;
+            case "single":
+                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
+                contenta.each(function(i,ele){
+                    if (i%2) {
+                        $(this).addClass('active');
+                    };
+                })
+                break;
+            case "double":
+                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
+                contenta.each(function(i,ele){
+                    if (i%2==0) {
+                        $(this).addClass('active');
+                    };
+                })
+                break;
+            case "clear":
+                $('.multiple').removeClass('active');
+                $('.footer-pirce').removeClass('active');
+                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
+                break;
+        }
+    })
+    var bet = {};
+    bet.getChoosed = function() {}
 
     function action(index, that) {
         console.log(that.text())
@@ -142,7 +205,7 @@ $(function() {
             case '2':
                 $('.tabs .ten-thousand').show();
                 $('.tabs .thousand').show();
-                switch($('.choose-mode').text()){
+                switch ($('.choose-mode').text()) {
                     case '五星组选60':
                         $('.tabs .ten-thousand span').show().text('二重号位');
                         $('.tabs .thousand span').show().text('单号位');
@@ -181,7 +244,7 @@ $(function() {
                 $('.tabs .ten-thousand').show();
                 $('.tabs .thousand').show();
                 $('.tabs .hundred').show();
-                switch($('.choose-mode').text()){
+                switch ($('.choose-mode').text()) {
                     case '前三复式':
                         $('.tabs .ten-thousand span').show().text('万位');
                         $('.tabs .thousand span').show().text('千位');
