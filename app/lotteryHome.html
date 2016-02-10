@@ -11,13 +11,13 @@
         <link rel="stylesheet" type="text/css" href="css/common.css">
     </head>
     <body class="home">
-        <header class="home-header">
+        <header class="header-fixed home-header">
             <h1 class="text-nowrap">购彩大厅</h1>
         </header>
         <section class="all-lotteries">
             <ul>
                 <li>
-                    <a href="javascript:;">
+                    <a href="mmlottery.html">
                     <div class="img-box">
                         <img src="images/bg.png" alt="">
                     </div>
@@ -179,7 +179,7 @@
             </ul>
         </section>
 
-        <footer class="home-footer">
+        <footer class="footer-fixed home-footer">
             <nav >
                 <ul>
                     <li><a class="text-nowrap" href="#"  title="">精彩推荐</a></li>
@@ -201,31 +201,14 @@
               $(function(){
                 $('.home-footer').on('tap','a',function(){
                     console.log($(this).text());
-                    loader.init();
+                    
+
                 })
                 /*$(window).on('resize',function(){
                     console.log(screen.width+':'+screen.height);
                 })*/
               })
-              var loader={
-                tag:true,
-                init:function(){
-                    if (this.tag) {
-                        var width=screen.availWidth;
-                        var height=screen.availHeight;
-                        console.log(height)
-                        $(this.defaultHtml).appendTo($('body'));
-                        $('.ui-icon-loading').css({
-                            'top':height/2
-                        });
-                        this.tag=false;
-                    };
-                    
-                },
-                defaultHtml: "<div class='ui-loader'>" +
-                    "<span class='ui-icon-loading'></span>" +
-                    "</div>"
-              };
+              
               
         </script>
         
