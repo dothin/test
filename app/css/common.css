@@ -2,7 +2,7 @@
 * @Author: gaohuabin
 * @Date:   2016-02-06 17:33:33
 * @Last Modified by:   gaohuabin
-* @Last Modified time: 2016-02-11 21:00:43
+* @Last Modified time: 2016-02-11 22:49:48
 */
 @charset "UTF-8";
 a,a:active {
@@ -79,6 +79,7 @@ b,strong {
 }
 .relative{position:relative;}
 .hide{display:none;}
+.show{display:block;}
 img {
     max-width:100%;
     border: 0 none;vertical-align: middle;
@@ -203,7 +204,7 @@ img {
 .items a{display:block;font-size:1.5rem;}
 
 .shunli-content{padding-bottom:2rem;}
-.content-top{height:3rem;line-height: 3rem;background:#0C173A;display:-webkit-box;display:box;padding:0 2rem;}
+.content-top{height:4rem;line-height: 4rem;background:#0C173A;display:-webkit-box;display:box;padding:0 2rem;}
 .content-top a{display:block;color:#fff;font-size: 1.4rem;-webkit-box-flex:1;text-align: right;}
 .content-top a:first-child{text-align:left;}
 

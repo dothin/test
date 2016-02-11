@@ -2,7 +2,7 @@
  * @Author: gaohuabin
  * @Date:   2016-02-10 14:52:37
  * @Last Modified by:   gaohuabin
- * @Last Modified time: 2016-02-11 20:58:06
+ * @Last Modified time: 2016-02-11 22:51:31
  */
 $(function() {
     /*loader.init();
@@ -31,13 +31,13 @@ $(function() {
             $('.mode-content').animate({
                 "height": "0",
                 "transition": ".1s"
-            }, 100);
+            }, 100).removeClass('show').addClass('hide');
         } else {
             $(this).addClass('active');
             $('.mode-content').animate({
                 "height": "340px",
                 "transition": ".4s"
-            }, 300);
+            }, 300).removeClass('hide').addClass('show');
         }
     })
     $('.price').on('tap', function() {
@@ -73,8 +73,7 @@ $(function() {
         }
     }
     $('.mode-content .mode-top').on('tap', 'a', function() {
-        $('.box-header a').removeClass('active');
-        $('.box-content a').removeClass('active');
+        bet.removeBoxActive();
         bet.removeFooterActive();
         bet.setFooterNum();
         var text = $(this).text();
@@ -89,8 +88,7 @@ $(function() {
         action(index, $(this));
     })
     $('.mode-content .items').on('tap', 'a', function() {
-        $('.box-header a').removeClass('active');
-        $('.box-content a').removeClass('active');
+        bet.removeBoxActive();
         bet.removeFooterActive();
         bet.setFooterNum();
         var arr = $(this).parents('.items').find('span').text().split('');
@@ -127,7 +125,7 @@ $(function() {
             } else {
                 $(this).addClass('active');
             }
-        }else{
+        } else {
             $(this).parents('.box-content').find('a').removeClass('active');
             $(this).addClass('active');
         }
@@ -191,12 +189,15 @@ $(function() {
     })
     // 机选一注
     $('.footer-pirce').on('tap', function() {
+        bet.removeBoxActive();
         bet.randChoose();
         // console.log(bet.checkChoosed());
         // console.log(bet.getBetNumber());
         bet.setFooterNum();
+        bet.setTotalPrice();
     });
     $('.rand-choose').on('tap', function() {
+        bet.removeBoxActive();
         bet.randChoose();
         // console.log(bet.checkChoosed());
         // console.log(bet.getBetNumber());
@@ -217,6 +218,10 @@ $(function() {
             $('.multiple').removeClass('active');
             $('.footer-pirce').removeClass('active');
         };
+    },
+    bet.removeBoxActive = function() {
+        $('.box-header a').removeClass('active');
+        $('.box-content a').removeClass('active');
     },
     bet.checkChoosed = function() {
         var a = {
@@ -264,7 +269,7 @@ $(function() {
     bet.setTotalPrice = function() {
         var num = $('.footer-pirce .num').text();
         var price = $('.footer-pirce .pri').text();
-        $('.footer-pirce .total').text(num * price + '元');
+        $('.footer-pirce .total').text((num * price).toFixed(1) + '元');
     },
     bet.setFooterNum = function() {
         $('.footer-pirce').find('.num').text(bet.getBetNumber());
@@ -460,7 +465,7 @@ $(function() {
                 $('.tabs .ten-thousand').show().find('span').hide();
                 if ($('.choose-mode').text().indexOf('包胆') > 0) {
                     $('.tabs .ten-thousand').find('.box-header').css('visibility', 'hidden');
-                }else{
+                } else {
                     $('.tabs .ten-thousand').find('.box-header').css('visibility', 'visible');
                 }
                 break;
