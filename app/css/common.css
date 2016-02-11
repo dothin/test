@@ -2,7 +2,7 @@
 * @Author: gaohuabin
 * @Date:   2016-02-06 17:33:33
 * @Last Modified by:   gaohuabin
-* @Last Modified time: 2016-02-11 01:46:39
+* @Last Modified time: 2016-02-11 21:00:43
 */
 @charset "UTF-8";
 a,a:active {
@@ -211,12 +211,12 @@ img {
 .number-box{padding-left:1rem;display:none;}
 .box-header{height:4rem;line-height: 4rem;border-bottom: 1px solid #ddd;}
 
-.box-header span{display:block;width:6rem;float: left;}
-.box-header ul{margin-left:7rem;overflow: hidden;overflow-x:auto;white-space: nowrap;}
+.box-header span{display:block;width:80px;float: left;}
+.box-header ul{margin-left:7rem;overflow: hidden;overflow-x:auto;white-space: nowrap;text-align: right;padding-right:5px;}
 .box-header ul::-webkit-scrollbar{width:0;height:0;-webkit-overflow-scrolling: touch;
     -webkit-transform: translateZ(0);}
 .box-header li{display:inline-block;}
-.box-header a{display:block;height:40px;width:40px;line-height:40px;text-align:center;}
+.box-header a{display:block;height:33px;width:33px;line-height:33px;text-align:center;}
 .box-header .active{background:#ddd;border-radius: 40px;}
 .box-content{}
 .box-content li{display:inline-block;height:40px;width:40px;line-height:40px;text-align:center;margin:.5rem;}
@@ -232,6 +232,6 @@ img {
 .footer-pirce{-webkit-box-flex:7;}
 .footer-pirce a{position:relative;}
 .footer-pirce p{position:absolute;top:-.6rem;left:1rem;}
-.footer-pirce .total{position:absolute;top:1.3rem;left:1rem;color:#EF3232;}
-.footer-pirce i{position:absolute;top:0;left:12rem;}
+.footer-pirce .total{position:absolute;top:1.3rem;left:1rem;color:#F2F739;}
+.footer-pirce i{position:absolute;top:0;left:13rem;}
 .shunli-footer a{display:block;color:#fff;height:5rem;line-height: 5rem;padding-left:.5rem;}
