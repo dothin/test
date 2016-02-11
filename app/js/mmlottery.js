@@ -2,7 +2,7 @@
  * @Author: gaohuabin
  * @Date:   2016-02-10 14:52:37
  * @Last Modified by:   gaohuabin
- * @Last Modified time: 2016-02-11 22:51:31
+ * @Last Modified time: 2016-02-11 22:58:33
  */
 $(function() {
     /*loader.init();
@@ -31,13 +31,13 @@ $(function() {
             $('.mode-content').animate({
                 "height": "0",
                 "transition": ".1s"
-            }, 100).removeClass('show').addClass('hide');
+            }, 100).hide();
         } else {
             $(this).addClass('active');
             $('.mode-content').animate({
                 "height": "340px",
                 "transition": ".4s"
-            }, 300).removeClass('hide').addClass('show');
+            }, 300).show();
         }
     })
     $('.price').on('tap', function() {
@@ -83,7 +83,7 @@ $(function() {
         $('.mode-content').animate({
             "height": "0",
             "transition": ".1s"
-        }, 100);
+        }, 100).hide();
         $('.number-box').hide();
         action(index, $(this));
     })
@@ -111,7 +111,7 @@ $(function() {
         $('.mode-content').animate({
             "height": "0",
             "transition": ".1s"
-        }, 100);
+        }, 100).hide();
         localStorage.setItem("items", arrText);
         $('.number-box').hide();
         action(index, $(this));
