@@ -2,7 +2,7 @@
  * @Author: gaohuabin
  * @Date:   2016-02-10 14:52:37
  * @Last Modified by:   gaohuabin
- * @Last Modified time: 2016-02-11 02:00:22
+ * @Last Modified time: 2016-02-11 13:22:44
  */
 $(function() {
     /*loader.init();
@@ -65,16 +65,15 @@ $(function() {
     function init() {
         if (localStorage.getItem("items")) {
             var arrItems = localStorage.getItem("items").split(',');
-            console.log(arrItems)
             arrText = arrItems;
             var len = arrItems.length;
             for (var i = 0; i < len; i++) {
                 var arr = arrItems[i].split('.');
                 $('.mode-top ul').append('<li><a href="javascript:;" data-id="' + arr[1] + '" title="">' + arr[0] + '</a></li>');
             };
-            $('.mode-top ul').get(0).children[0].className = 'active';
-            $('.choose-mode').text($('.mode-top ul li').get(0).children[0].innerHTML);
-            action('5', $($('.mode-top ul li').get(0).children[0]));
+            $('.mode-top ul li').first().addClass('active');
+            $('.choose-mode').text($('.mode-top ul li a').first().text());
+            action('5', $('.mode-top ul li a').first());
         } else {
             $('.mode-top ul').append('<li class="active"><a href="javascript:;" data-id="5" title="">五星复式</a></li>');
             $('.choose-mode').text("五星复式");
@@ -84,10 +83,7 @@ $(function() {
     $('.mode-content .mode-top').on('tap', 'a', function() {
         var text = $(this).text();
         var index = $(this).get(0).dataset.id;
-        $('.mode-top ul li').each(function(index, el) {
-            $(this).removeClass('active');
-        });
-        $(this).parent().addClass('active');
+        $(this).parent().addClass('active').siblings().removeClass('active');
         $('.choose-mode').removeClass('active').text(text);
         $('.mode-content').animate({
             "height": "0",
@@ -99,28 +95,24 @@ $(function() {
     })
     //$('.mode-top ul').
     $('.mode-content .items').on('tap', 'a', function() {
+        $('.box-header a').removeClass('active');
         $('.box-content a').removeClass('active');
+        bet.removeFooterActive();
         var arr = $(this).parents('.items').find('span').text().split('');
         var stars = arr[0] + arr[1];
         var index = $(this).get(0).dataset.id;
         var text = stars + $(this).text();
         var sText = stars + $(this).text() + '.' + index;
+        $('.mode-top ul li').removeClass('active');
         if ($.inArray(sText, arrText) == -1) {
             arrText.push(sText);
-            $('.mode-top ul li').each(function(index, el) {
-                $(this).removeClass('active');
-            });
-            $('.mode-top ul').get(0).insertBefore($('<li class="active"><a href="javascript:;" data-id="' + index + '" title="">' + text + '</a></li>').get(0), $('.mode-top ul li').get(0));
+            $('<li class="active"><a href="javascript:;" data-id="' + index + '" title="">' + text + '</a></li>').insertBefore($('.mode-top ul li').first());
         } else {
-            $('.mode-top ul li').each(function(index, el) {
-                $(this).removeClass('active');
-                /*if ($(this).text() == text) {
-                    var left = $(this).offset().left;
-                    $(this).addClass('active').parent().animate({
-                        'left': -left
-                    })
-                };*/
-            });
+            $('.mode-top ul li').each(function() {
+                if ($(this).text() == text) {
+                    $(this).insertBefore($('.mode-top ul li').first()).addClass('active');
+                };
+            })
         }
         $('.choose-mode').removeClass('active').text(text);
         $('.mode-content').animate({
@@ -129,75 +121,94 @@ $(function() {
         }, 100);
         localStorage.setItem("items", arrText);
         $('.number-box').hide();
-        console.log(index)
         action(index, $(this));
     })
     $('.box-content').on('tap', 'a', function() {
         $(this).parents('.number-box').find('.box-header a').removeClass('active');
-        $('.multiple').addClass('active');
-        $('.footer-pirce').addClass('active');
+        bet.addFooterActive();
         if ($(this).hasClass('active')) {
             $(this).removeClass('active');
         } else {
             $(this).addClass('active');
         }
+        bet.checkChoosed();
     })
     $('.box-header').on('tap', 'a', function() {
-        var contenta=$(this).parents('.number-box').find('.box-content a');
-        var len=contenta.length;
-        var headera=$(this).parents('.number-box').find('.box-header a');
+        bet.addFooterActive();
+        var contenta = $(this).parents('.number-box').find('.box-content a');
+        var len = contenta.length;
+        var headera = $(this).parents('.number-box').find('.box-header a');
         headera.removeClass('active');
-        switch ($(this).get(0).className) {
+        $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
+        var arr = $(this).get(0).className.split(' ');
+        switch (arr[0]) {
             case "big":
-                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
-                contenta.each(function(i,ele){
-                    if (i>=len/2) {
+                contenta.each(function(i, ele) {
+                    if (i >= len / 2) {
                         $(this).addClass('active');
                     };
                 })
                 break;
             case "small":
-                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
-                contenta.each(function(i,ele){
-                    if (i<len/2) {
+                contenta.each(function(i, ele) {
+                    if (i < len / 2) {
                         $(this).addClass('active');
                     };
                 })
                 break;
             case "all":
-                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
-                contenta.each(function(i,ele){
-                        $(this).addClass('active');
+                contenta.each(function(i, ele) {
+                    $(this).addClass('active');
                 })
                 break;
             case "single":
-                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
-                contenta.each(function(i,ele){
-                    if (i%2) {
+                contenta.each(function(i, ele) {
+                    if (i % 2) {
                         $(this).addClass('active');
                     };
                 })
                 break;
             case "double":
-                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
-                contenta.each(function(i,ele){
-                    if (i%2==0) {
+                contenta.each(function(i, ele) {
+                    if (i % 2 == 0) {
                         $(this).addClass('active');
                     };
                 })
                 break;
             case "clear":
-                $('.multiple').removeClass('active');
-                $('.footer-pirce').removeClass('active');
-                $(this).addClass('active').parents('.number-box').find('.box-content a').removeClass('active');
+                bet.removeFooterActive();
                 break;
         }
     })
     var bet = {};
-    bet.getChoosed = function() {}
+    bet.addFooterActive = function() {
+        $('.multiple').addClass('active');
+        $('.footer-pirce').addClass('active');
+    },
+    bet.removeFooterActive = function() {
+        var b = true;
+        $('.ten-number .box-content a').each(function() {
+            if ($(this).hasClass('active')) b = false;
+        })
+        if (b) {
+            $('.multiple').removeClass('active');
+            $('.footer-pirce').removeClass('active');
+        };
+    },
+    bet.checkChoosed = function() {
+        var b = false;
+        $(".ten-number .number-box").each(function() {
+            if ($(this).css("display") == 'block') {
+                $(this).children('a').each(function() {
+                    if ($(this).hasClass('active')) b = true;
+                })
+            }
+        })
+    },
+    bet.fushiRule = function() {}
 
     function action(index, that) {
-        console.log(that.text())
+        // console.log(that.text())
         switch (index) {
             case '1':
                 $('.tabs .ten-thousand').show().find('span').hide();
@@ -274,6 +285,7 @@ $(function() {
                 $('.tabs .hundred').show().find('span').text('百位');
                 $('.tabs .ten').show().find('span').text('十位');
                 $('.tabs .single').show().find('span').text('个位');
+                var obj = {};
                 break;
             case '6':
                 $('.tabs .three-direct').show();
