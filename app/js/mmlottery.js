@@ -2,7 +2,7 @@
  * @Author: gaohuabin
  * @Date:   2016-02-10 14:52:37
  * @Last Modified by:   gaohuabin
- * @Last Modified time: 2016-02-12 10:04:52
+ * @Last Modified time: 2016-02-12 11:07:54
  */
 $(function() {
     /*loader.init();
@@ -29,15 +29,14 @@ $(function() {
         if ($(this).hasClass('active')) {
             $(this).removeClass('active');
             $('.mode-content').animate({
-                "height": "0",
-                "transition": ".1s"
+                "height": "0"
             }, 100).hide();
         } else {
             $(this).addClass('active');
-            $('.mode-content').animate({
-                "height": "340px",
-                "transition": ".4s"
-            }, 300).show();
+            // .show()放前面，为了解决兼容问题
+            $('.mode-content').show().animate({
+                "height": "340px"
+            }, 300);
         }
     })
     $('.price').on('tap', function() {
@@ -81,8 +80,7 @@ $(function() {
         $(this).parent().addClass('active').siblings().removeClass('active');
         $('.choose-mode').removeClass('active').text(text);
         $('.mode-content').animate({
-            "height": "0",
-            "transition": ".1s"
+            "height": "0"
         }, 100).hide();
         $('.number-box').hide();
         action(index, $(this));
@@ -109,8 +107,7 @@ $(function() {
         }
         $('.choose-mode').removeClass('active').text(text);
         $('.mode-content').animate({
-            "height": "0",
-            "transition": ".1s"
+            "height": "0"
         }, 100).hide();
         localStorage.setItem("items", arrText);
         $('.number-box').hide();
@@ -131,10 +128,9 @@ $(function() {
         }
         // console.log(bet.checkChoosed());
         // console.log(bet.getBetNumber());
-        // console.log(bet.getFuShiList());
-        // console.log(bet.getHeZhiList());
         bet.setFooterNum();
         bet.setTotalPrice();
+        console.log(bet.ouputStr());
     })
     $('.box-header').on('tap', 'a', function() {
         bet.addFooterActive();
@@ -186,6 +182,7 @@ $(function() {
         // console.log(bet.getHeZhiList());
         bet.setFooterNum();
         bet.setTotalPrice();
+        console.log(bet.ouputStr());
     })
     // 机选一注
     $('.footer-pirce').on('tap', function() {
@@ -195,6 +192,7 @@ $(function() {
         // console.log(bet.getBetNumber());
         bet.setFooterNum();
         bet.setTotalPrice();
+        console.log(bet.ouputStr());
     });
     $('.rand-choose').on('tap', function() {
         bet.removeBoxActive();
@@ -203,6 +201,7 @@ $(function() {
         // console.log(bet.getBetNumber());
         bet.setFooterNum();
         bet.setTotalPrice();
+        console.log(bet.ouputStr());
     });
     var bet = {};
     bet.addFooterActive = function() {
@@ -274,13 +273,29 @@ $(function() {
     bet.setFooterNum = function() {
         $('.footer-pirce').find('.num').text(bet.getBetNumber());
     },
+    bet.ouputStr = function() {
+        var a=$('.choose-mode').text();
+        if (a.indexOf('和值') > 0) {
+            return bet.getHeZhiList();
+        } else {
+            return bet.getFuShiList();
+        }
+    }
     bet.getFuShiList = function() {
-        var t = {
-            thh: [],
-            th: [],
-            hu: [],
-            t: [],
-            s: []
+        var str = {
+            text: {
+                c: $('.choose-mode').text(),
+                n: $('.footer-pirce .num').text(),
+                p: $('.footer-pirce .pri').text(),
+                m: $('.multiple span').text()
+            },
+            t: {
+                thh: [],
+                th: [],
+                hu: [],
+                ten: [],
+                s: []
+            }
         };
         $(".ten-number .number-box").each(function() {
             var arr = $(this).attr('class').split(' ');
@@ -289,53 +304,63 @@ $(function() {
                 case 'ten-thousand':
                     a.each(function(index, el) {
                         if ($(this).hasClass('active')) {
-                            t.thh.push($(this).text());
+                            str.t.thh.push($(this).text());
                         };
                     });
                     break;
                 case 'thousand':
                     a.each(function(index, el) {
                         if ($(this).hasClass('active')) {
-                            t.th.push($(this).text());
+                            str.t.th.push($(this).text());
                         };
                     });
                     break;
                 case 'hundred':
                     a.each(function(index, el) {
                         if ($(this).hasClass('active')) {
-                            t.hu.push($(this).text());
+                            str.t.hu.push($(this).text());
                         };
                     });
                     break;
                 case 'ten':
                     a.each(function(index, el) {
                         if ($(this).hasClass('active')) {
-                            t.t.push($(this).text());
+                            str.t.ten.push($(this).text());
                         };
                     });
                     break;
                 case 'single':
                     a.each(function(index, el) {
                         if ($(this).hasClass('active')) {
-                            t.s.push($(this).text());
+                            str.t.s.push($(this).text());
                         };
                     });
                     break;
             }
         })
-        return t;
+        return str;
     },
     bet.getHeZhiList = function() {
-        var arrValue = [];
+        var str = {
+            text: {
+                c: $('.choose-mode').text(),
+                n: $('.footer-pirce .num').text(),
+                p: $('.footer-pirce .pri').text(),
+                m: $('.multiple span').text()
+            },
+            t: {
+                thh: []
+            }
+        };
         $(".hezhi .number-box").each(function() {
             var a = $(this).find('.box-content').find('a');
             a.each(function(index, el) {
                 if ($(this).hasClass('active')) {
-                    arrValue.push($(this).text());
+                    str.t.thh.push($(this).text());
                 };
             });
         });
-        return arrValue;
+        return str;
     },
     bet.createRandom = function(num, from, to) {
         var arr = [];
