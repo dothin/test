@@ -2,7 +2,7 @@
  * @Author: gaohuabin
  * @Date:   2016-02-10 14:52:37
  * @Last Modified by:   gaohuabin
- * @Last Modified time: 2016-02-12 09:34:06
+ * @Last Modified time: 2016-02-12 10:04:52
  */
 $(function() {
     /*loader.init();
@@ -28,7 +28,10 @@ $(function() {
     $('.choose-mode').on('tap', function() {
         if ($(this).hasClass('active')) {
             $(this).removeClass('active');
-            $('.mode-content').height(0).hide();
+            $('.mode-content').animate({
+                "height": "0",
+                "transition": ".1s"
+            }, 100).hide();
         } else {
             $(this).addClass('active');
             $('.mode-content').animate({
@@ -77,7 +80,10 @@ $(function() {
         var index = $(this).get(0).dataset.id;
         $(this).parent().addClass('active').siblings().removeClass('active');
         $('.choose-mode').removeClass('active').text(text);
-        $('.mode-content').height(0).hide();
+        $('.mode-content').animate({
+            "height": "0",
+            "transition": ".1s"
+        }, 100).hide();
         $('.number-box').hide();
         action(index, $(this));
     })
@@ -102,7 +108,10 @@ $(function() {
             })
         }
         $('.choose-mode').removeClass('active').text(text);
-        $('.mode-content').height(0).hide();
+        $('.mode-content').animate({
+            "height": "0",
+            "transition": ".1s"
+        }, 100).hide();
         localStorage.setItem("items", arrText);
         $('.number-box').hide();
         action(index, $(this));
