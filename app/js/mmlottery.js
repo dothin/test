@@ -250,7 +250,7 @@ $(function() {
         }
         if (bet.checkChoosed()) {
             a.n = 1;
-            a.b = bet.getFuShiList();
+            a.b = bet.getFuShiList().t;
             for (x in a.b) {
                 if (a.b[x].length > 0) {
                     a.c.push(a.b[x].length)
