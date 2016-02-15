@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>无标题文档</title>
+        <script>
+                window.onload = function() {
+                    
+                    function getByClass(oParent, sClass)
+                    {
+                        var aEle=oParent.getElementsByTagName('*');
+                        var aResult=[];
+                        var i=0;
+                        
+                        for(i=0;i<aEle.length;i++)
+                        {
+                            var aClassName = aEle[i].className.split(' ');
+                            for (var j = 0; j < aClassName.length; j++) {
+                                if(aClassName[j].className==sClass)
+                                {
+                                    aResult.push(aEle[i]);
+                                    break;
+                                }
+                            };
+                            
+                        }
+                        
+                        return aResult;
+                    }
+
+                    var oTxt = document.getElementById('text1');
+
+                    addClass(oTxt,'text');
+                    removeClass(oTxt,'txt');
+
+function arrIndexOf(arr, value){
+
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == value) {
+            return i;
+        };
+    };
+    return -1;
+
+}
+
+function addClass(obj,sClass){
+    if(obj.className == ''){
+        obj.className = sClass;
+    }else{
+        var aClassName = obj.className.split(' ');
+        var _index = arrIndexOf(aClassName,sClass);
+        if (_index == -1) {
+            obj.className +=' '+sClass;
+        };
+        
+    }
+}
+
+function removeClass(obj,sClass){
+    if (obj.className != '') {
+        var aClassName = obj.className.split(' ');
+        var _index = arrIndexOf(aClassName,sClass);
+        if (_index != -1) {
+            aClassName.splice(_index,1);
+            obj.className = aClassName.join(' ');
+        };
+    };
+}
+window.location.href="file:///C:/Users/user/Desktop/布局练习/动漫平台/top.html?q=window.status&src=se_zoned#fdasfd";
+console.log( window.location.href );
+console.log( window.location.search );
+console.log( window.location.hash );
+
+}
+        </script>
+    </head>
+    <body>
+        <input type="text" id="text1" value="1111" _name_="妙味" class="txt txt1" />
+        <img src="img/bj.jpg" height="8" id="img1" style="width:100px;" />
+
+        <form action="http://www.lifestydynet.com" method="[post]" accept-charset="utf-8">
+            <select name="select" >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <input type="submit" name="" value="submit">
+        </form>
+    </body>
+</html>
