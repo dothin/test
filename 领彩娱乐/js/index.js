@@ -332,7 +332,7 @@
     });
     //屏幕尺寸改变
     $(window).resize(function(event) {
-        //animateScrollTo(0, 'reset');
+        animateScrollTo(0, 'reset');
     });
     //向下翻屏
     $('#J-next-section').on('click', function() {

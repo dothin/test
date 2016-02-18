@@ -319,17 +319,17 @@ i {
     border-radius: 20px;
     display: inline-block;
     margin-right: 30px;
-    background: #fff;
+    background: #550007;
     overflow: hidden;
     cursor:pointer;
 }
 .tab-btn .active {
-    background: #550007;
+    background: #fff;
 }
 
 
 /* advantage */
-.advantage-inner{position:absolute;width:1920px;height:1000px;left:50%;top:50%;margin-left:-960px;margin-top:-500px;background:url("../images/advantage.jpg") no-repeat center 200px;}
+.advantage-inner{position:absolute;width:1920px;height:1000px;left:50%;top:50%;margin-left:-960px;margin-top:-500px;background:url("../images/advantage1.jpg") no-repeat center 0;}
 .advantage-inner .container{
     padding-top:360px;
 }
